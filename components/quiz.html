@@ -1,0 +1,25 @@
+<div class="quiz_wrapper">
+    <div class="score">
+        <div class="reload hide">
+            <button onclick="reload()">Reload</button>
+        </div>
+        <div class="score-card hide">
+            Score : <span id="scoreCard">0</span>
+        </div>
+        <div class="next hide">
+            <button onclick="next()">Next</button>
+        </div>
+    </div>
+    <br>
+    <div class="question" id="questionBox">
+    </div>
+    <div id="results"></div>
+    <div class="options">
+        <ul id="ul">
+            <li id="op1" onclick="button(this)"></li>
+            <li id="op2" onclick="button(this)"></li>
+            <li id="op3" onclick="button(this)"></li>
+            <li id="op4" onclick="button(this)"></li>
+        </ul>
+    </div>
+</div>
