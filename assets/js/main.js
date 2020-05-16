@@ -1,4 +1,6 @@
-﻿function set_view(file, selector) {
+﻿var user;
+
+function set_view(file, selector) {
   fetch(file)
   .then(response => {
     return response.text()
@@ -13,6 +15,7 @@ function init_quiz() {
   var script = document.createElement('script');
   script.src = './assets/js/quiz.js';
   document.body.appendChild(script);
+  return true;
 }
 
 function validate() {
@@ -25,31 +28,30 @@ function validate() {
   else {
     var permissions;
 
-    var oReq = new XMLHttpRequest();
-    oReq.onload = reqListener;
-    oReq.open("get", "./data/auth.json", true);
-    oReq.send();
+    var Req = new XMLHttpRequest();
+    Req.onload = reqListener;
+    Req.open("get", "./data/auth.json", true);
+    Req.send();
 
     function reqListener(e) {
       permissions = JSON.parse(this.responseText);
       for (i = 0; i < permissions.users.length; i++) {
         if (permissions.users[i] == username) {
-          init_quiz();
-          return true;
-        }
-        else {
-          alert('Username does not exist');
-          document.getElementById('username').value = '';
-          return false;
+          user = permissions.users[i];
+          return init_quiz();
         }
       }
+      alert('Username does not exist');
+      document.getElementById('username').value = '';
+      return false;
     }
   }
 }
 
 function exportData(answers) {
 
-  var data;
+  var data = user + ' has ' + (30 - wrong_answr.length) + ' correct answers and ' + wrong_answr.length + ' wrong answers' + '\r\n\r\n';
+  var store_json = [user + ' has ' + (30 - wrong_answr.length) + ' correct answers and ' + wrong_answr.length + ' wrong answers']
 
   for (i = 0; i < answers.length; i++) {
     data += answers[i].question + '\r\n';
@@ -60,7 +62,10 @@ function exportData(answers) {
     data += answers[i].correct_id + '\r\n';
     data += answers[i].correct + '\r\n';
     data += '\r\n';
+    store_json[1 + i] = answers[i].question + '\r\n' + 'Selected answer ' + answers[i].selected_id + '\r\n' + answers[i].selected + '\r\n' + 'Correct answer ' + answers[i].correct_id + '\r\n' + answers[i].correct + '\r\n';
   }
+
+  console.log(store_json);
 
   data = 'data:application/csv;charset=utf-8,' + encodeURIComponent(data);
   var exportLink = document.createElement('a');
@@ -73,7 +78,7 @@ function exportData(answers) {
   document.getElementById('results').appendChild(exportLink);
 }
 
-(function () {
+window.addEventListener('load', function () {
   set_view('./components/header.html', 'header');
 
   if (typeof username == 'undefined') {
@@ -81,4 +86,4 @@ function exportData(answers) {
   }
 
   set_view('./components/footer.html', 'footer');
-})();
+})

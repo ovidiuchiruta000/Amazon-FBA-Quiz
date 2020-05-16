@@ -102,8 +102,7 @@ var app = {
       for (i = 0; i < btn.length; i++) {
         btn[i].style.display = "none";
       }
-
-      exportData(wrong_answr);
+      exportData(wrong_answr, user);
     }
   },
   next: function () {
