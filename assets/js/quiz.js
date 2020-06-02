@@ -93,7 +93,7 @@ var app = {
       this.scoreCard();
     }
     else {
-      quizBox.innerHTML = "Done! " + 'You have ' + this.score + ' correct and ' + wrong_answr.length + ' wrong answers';
+      quizBox.innerHTML = 'You have ' + this.score + ' correct and ' + wrong_answr.length + ' wrong answers ' + "The quiz answer has been submited! Download CSV only if with app does not have database api setup.";
       op1.style.display = "none";
       op2.style.display = "none";
       op3.style.display = "none";
