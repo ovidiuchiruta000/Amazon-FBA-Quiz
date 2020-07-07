@@ -11,15 +11,10 @@ function set_view(file, selector) {
 }
 
 function init_quiz() {
-          var script = document.createElement('script');
-                script.src = './assets/js/quiz.js';
-                document.body.appendChild(script);
-  setTimeout(function(
-         {
-              set_view('./components/quiz.html', 'content');
-              
-             }), 3000);
-
+  set_view('./components/quiz.html', 'content');
+  var script = document.createElement('script');
+  script.src = './assets/js/quiz.js';
+  document.body.appendChild(script);
   return true;
 }
 
