@@ -168,5 +168,5 @@ function start()
   app.load();
 }
 
- setTimeout(function({ start() }), 1000);
+ setTimeout(start, 1000);
 
