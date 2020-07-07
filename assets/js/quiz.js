@@ -163,7 +163,11 @@ function reload() {
   init_quiz();
 }
 
+function start()
+{
+  app.load();
+}
+
 (function () {
-  setTimeout(function(
-         { app.load(); }), 1000);
+  setTimeout(function({ start() }), 1000);
 })();
