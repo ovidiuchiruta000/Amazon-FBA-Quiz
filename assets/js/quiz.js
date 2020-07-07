@@ -164,5 +164,6 @@ function reload() {
 }
 
 (function () {
-  app.load();
+  setTimeout(function(
+         { app.load(); }), 1000);
 })();
