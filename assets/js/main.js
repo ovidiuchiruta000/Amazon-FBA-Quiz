@@ -11,12 +11,13 @@ function set_view(file, selector) {
 }
 
 function init_quiz() {
-  set_view('./components/quiz.html', 'content');
-  setTimeout(function(
-             {
-                var script = document.createElement('script');
+          var script = document.createElement('script');
                 script.src = './assets/js/quiz.js';
                 document.body.appendChild(script);
+  setTimeout(function(
+         {
+              set_view('./components/quiz.html', 'content');
+              
              }), 3000);
 
   return true;
