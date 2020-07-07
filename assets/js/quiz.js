@@ -168,6 +168,5 @@ function start()
   app.load();
 }
 
-(function () {
-  setTimeout(function({ start() }), 1000);
-})();
+ setTimeout(function({ start() }), 1000);
+
